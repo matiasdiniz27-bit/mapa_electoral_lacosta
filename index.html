@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inteligencia Electoral | La Costa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="topbar-estrategica">
+        <div class="logo-consultora"><span class="indicador-vivo"></span> SISTEMA ELECTORAL | LA COSTA</div>
+        <div class="controles-globales">
+            <label>Escenario:</label>
+            <select id="yearSelect" class="selector-premium">
+                <option value="2019">2019 - Ejecutivas</option>
+                <option value="2021">2021 - Legislativas</option>
+                <option value="2023">2023 - Ejecutivas</option>
+                <option value="2025" selected>2025 - Legislativas</option>
+            </select>
+        </div>
+    </header>
+
+    <main class="contenedor-principal">
+        <section class="sector-mapa">
+            <div id="map"></div>
+            
+            <div class="panel-capas-flotante">
+                <h4>CAPAS BASE</h4>
+                <div class="capa-opcion"><input type="radio" id="capa-poligonos" name="tipoCapa" value="poligonos"><label for="capa-poligonos">Superficie Exacta</label></div>
+                <div class="capa-opcion"><input type="radio" id="capa-zonas" name="tipoCapa" value="zonas" checked><label for="capa-zonas">Nodos Radiales</label></div>
+                <div class="capa-opcion"><input type="radio" id="capa-mesas" name="tipoCapa" value="mesas"><label for="capa-mesas">Nodos Testigo</label></div>
+                
+                <hr class="separador-capas">
+                <h4>⚡ CAPAS ESTRATÉGICAS</h4>
+                <div class="capa-opcion"><input type="radio" id="capa-ausentismo" name="tipoCapa" value="ausentismo"><label for="capa-ausentismo">🔥 Mapa Térmico (Ausentismo)</label></div>
+                <div class="capa-opcion"><input type="radio" id="capa-locales" name="tipoCapa" value="locales"><label for="capa-locales">🏢 Infraestructura</label></div>
+                <div class="capa-opcion"><input type="radio" id="capa-nse" name="tipoCapa" value="nse"><label for="capa-nse">📊 Nivel Socioeconómico</label></div>
+                <div class="capa-opcion"><input type="radio" id="capa-obras" name="tipoCapa" value="obras"><label for="capa-obras">🚧 Obras Públicas</label></div>
+                <div class="capa-opcion"><input type="radio" id="capa-corte" name="tipoCapa" value="corte"><label for="capa-corte">✂️ Corte de Boleta</label></div>
+
+                <hr class="separador-capas">
+                <button id="btn-swing" class="btn-calculadora">🔄 Calcular Swing vs Anterior</button>
+                <div id="resultado-swing" class="resultado-oculto"></div>
+            </div>
+            <div id="map-legend" class="leyenda-mapa"></div>
+        </section>
+
+        <section class="sector-datos">
+            <nav class="navegacion-pestañas">
+                <button class="btn-pestaña activo" onclick="cambiarPestaña('pestaña-escrutinio')">📊 Escrutinio Oficial</button>
+                <button class="btn-pestaña" onclick="cambiarPestaña('pestaña-metricas')">📈 Gráficos</button>
+                <button class="btn-pestaña" onclick="cambiarPestaña('pestaña-analisis')">🧠 Análisis</button>
+            </nav>
+            <div class="contenedor-pestañas">
+                <div id="pestaña-escrutinio" class="contenido-pestaña activo">
+                    <div class="cabecera-pestaña"><h2>Resultados Definitivos <span id="lbl-año-resultados" class="texto-resaltado">2025</span></h2></div>
+                    <div id="lista-resultados-oficiales" class="lista-partidos"></div>
+                    <div class="bloque-legislativo">
+                        <h3><span class="icono">🏛️</span> HCD</h3>
+                        <ul id="lista-bancas" class="lista-bancas-estilo"></ul>
+                    </div>
+                </div>
+                <div id="pestaña-metricas" class="contenido-pestaña">
+                    <div class="cabecera-pestaña"><h2>Dashboard Multimétrica</h2></div>
+                    <div class="grilla-graficos">
+                        <div class="tarjeta-grafico"><h4>Distribución</h4><div class="canvas-box-sm"><canvas id="grafico-torta"></canvas></div></div>
+                        <div class="tarjeta-grafico"><h4>Bancas</h4><div class="canvas-box-sm"><canvas id="grafico-barras"></canvas></div></div>
+                        <div class="tarjeta-grafico ancho-completo"><h4>Trayectoria (2019-2025)</h4><div class="canvas-box-lg"><canvas id="grafico-lineas"></canvas></div></div>
+                    </div>
+                </div>
+                <div id="pestaña-analisis" class="contenido-pestaña">
+                    <div class="cabecera-pestaña"><h2>Estrategia</h2></div>
+                    <div id="texto-analisis-politico" class="estilo-editorial"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="datos.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

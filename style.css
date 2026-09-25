@@ -1,0 +1,62 @@
+:root {
+    --bg-base: #020617; --bg-surface: #0f172a; --panel-glass: rgba(15, 23, 42, 0.75);
+    --gold: #fbbf24; --gold-glow: rgba(251, 191, 36, 0.2);
+    --text-main: #f8fafc; --text-muted: #94a3b8; 
+    --border-glass: rgba(255, 255, 255, 0.1);
+    --color-pj: #38bdf8; --color-jxc: #facc15; --color-lla: #a78bfa; 
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Montserrat', sans-serif; background: var(--bg-base); color: var(--text-main); }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+
+.topbar-estrategica { display: flex; justify-content: space-between; align-items: center; padding: 0 40px; height: 80px; background: rgba(2, 6, 23, 0.9); border-bottom: 1px solid var(--border-glass); position: sticky; top: 0; z-index: 2000; }
+.logo-consultora { font-weight: 900; letter-spacing: 2px; display: flex; align-items: center; }
+.indicador-vivo { width: 8px; height: 8px; border-radius: 50%; background: var(--color-pj); margin-right: 15px; box-shadow: 0 0 15px var(--color-pj); animation: latido 1.5s infinite; }
+@keyframes latido { 50% { opacity: 0.4; } }
+
+.selector-premium { background: var(--bg-surface); color: #fff; border: 1px solid var(--border-glass); padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; font-family: 'Montserrat'; }
+.contenedor-principal { display: flex; flex-direction: row; min-height: calc(100vh - 80px); }
+.sector-mapa { flex: 5.5; position: sticky; top: 80px; height: calc(100vh - 80px); border-right: 1px solid var(--border-glass); background: #000; }
+#map { width: 100%; height: 100%; }
+.sector-datos { flex: 4.5; display: flex; flex-direction: column; padding-bottom: 120px; background: var(--bg-base); }
+
+.panel-capas-flotante { position: absolute; top: 25px; left: 25px; z-index: 1000; background: var(--panel-glass); backdrop-filter: blur(15px); padding: 25px; border-radius: 16px; border: 1px solid var(--border-glass); width: 280px; }
+.panel-capas-flotante h4 { color: var(--text-muted); font-size: 0.75rem; margin-bottom: 15px; letter-spacing: 1px; }
+.capa-opcion { display: flex; align-items: center; margin-bottom: 12px; font-size: 0.85rem; font-weight: 600; cursor: pointer; }
+.capa-opcion input { margin-right: 12px; accent-color: var(--gold); }
+.separador-capas { border: 0; height: 1px; background: rgba(255,255,255,0.1); margin: 20px 0; }
+.btn-calculadora { background: var(--gold); color: #000; border: none; padding: 14px; border-radius: 8px; font-weight: 900; width: 100%; cursor: pointer; font-family: 'Montserrat'; text-transform: uppercase; font-size: 0.75rem; }
+.resultado-oculto { display: none; margin-top: 15px; border-top: 1px dashed var(--border-glass); padding-top: 15px; }
+
+.leyenda-mapa { position: absolute; bottom: 35px; right: 35px; z-index: 1000; background: var(--panel-glass); backdrop-filter: blur(15px); padding: 20px; border-radius: 12px; border: 1px solid var(--border-glass); }
+.map-tooltip { background: rgba(2, 6, 23, 0.95) !important; border: 1px solid var(--border-glass) !important; color: #fff !important; padding: 12px !important; border-radius: 8px !important; }
+
+.navegacion-pestañas { display: flex; background: rgba(2, 6, 23, 0.9); border-bottom: 1px solid var(--border-glass); position: sticky; top: 0; }
+.btn-pestaña { flex: 1; padding: 20px 0; background: transparent; border: none; color: var(--text-muted); font-weight: 800; text-transform: uppercase; cursor: pointer; font-size: 0.75rem; border-bottom: 3px solid transparent; }
+.btn-pestaña.activo { color: var(--gold); border-bottom-color: var(--gold); }
+.contenedor-pestañas { padding: 40px; }
+.contenido-pestaña { display: none; }
+.contenido-pestaña.activo { display: block; }
+.cabecera-pestaña { margin-bottom: 30px; border-bottom: 1px solid var(--border-glass); padding-bottom: 15px;}
+.cabecera-pestaña h2 { font-size: 2rem; font-weight: 900; }
+.texto-resaltado { color: var(--gold); }
+
+.tarjeta-partido { background: var(--panel-glass); border: 1px solid var(--border-glass); border-radius: 12px; margin-bottom: 20px; overflow: hidden; cursor: pointer; }
+.tarjeta-cabecera { padding: 25px; display: flex; justify-content: space-between; border-left: 8px solid; }
+.tarjeta-cabecera .nombre { font-weight: 900; font-size: 1.2rem; }
+.tarjeta-cabecera .pct { font-size: 2rem; font-weight: 900; }
+.tarjeta-desglose { display: none; background: rgba(0,0,0,0.5); padding: 20px 25px; border-top: 1px solid var(--border-glass); }
+.circuito-fila { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+.bloque-legislativo { background: rgba(245, 158, 11, 0.1); padding: 25px; border-radius: 12px; margin-top: 30px; border: 1px solid rgba(245, 158, 11, 0.2); }
+.bloque-legislativo h3 { color: var(--gold); margin-bottom: 15px; }
+.lista-bancas-estilo li { list-style: none; margin-bottom: 10px; font-weight: 600; }
+
+.grilla-graficos { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.tarjeta-grafico { background: var(--panel-glass); padding: 20px; border-radius: 12px; border: 1px solid var(--border-glass); }
+.ancho-completo { grid-column: span 2; }
+.canvas-box-sm { height: 200px; width: 100%; }
+.canvas-box-lg { height: 300px; width: 100%; }
+.estilo-editorial p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; color: #cbd5e1; }
+.estilo-editorial h3 { color: var(--gold); margin: 30px 0 15px; }
